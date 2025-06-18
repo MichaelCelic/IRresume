@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michael Zuazo - Interactive Resume</title>
+  <!-- Google Fonts: Orbitron for futuristic look -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-blue: #00ffff;
+      --neon-pink: #ff00de;
+      --glass-bg: rgba(20, 20, 30, 0.7);
+      --glass-blur: blur(10px);
+      --shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-pink);
+      --transition: cubic-bezier(.77,0,.18,1);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', Arial, sans-serif;
+      background: #050510;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    video#bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      z-index: 0;
+      object-fit: cover;
+      filter: brightness(0.5) blur(2px);
+      border: 5px solid;
+      border-image: linear-gradient(90deg, var(--neon-blue), var(--neon-pink)) 1;
+      box-shadow: 0 0 40px 10px var(--neon-blue), 0 0 80px 20px var(--neon-pink);
+    }
+    /* Fallback animated gradient */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+      background: linear-gradient(120deg, #0ff 0%, #050510 50%, #ff00de 100%);
+      background-size: 200% 200%;
+      animation: gradientMove 10s ease-in-out infinite;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--neon-blue);
+    }
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2.5rem auto 1.5rem auto;
+      max-width: 420px;
+      padding: 2rem 2rem 1.5rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .profile-pic {
+      border-radius: 50%;
+      border: 4px solid var(--neon-blue);
+      box-shadow: 0 0 40px var(--neon-blue), 0 0 20px var(--neon-pink);
+      overflow: hidden;
+      width: 140px; height: 140px;
+      margin-bottom: 1.2rem;
+      transition: box-shadow 0.3s;
+    }
+    .profile-pic img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+    }
+    .profile-pic:hover {
+      box-shadow: 0 0 60px var(--neon-pink), 0 0 30px var(--neon-blue);
+    }
+    .profile-section h1 {
+      color: var(--neon-blue);
+      font-size: 2.5rem;
+      margin: 0.5rem 0 0.2rem 0;
+      text-shadow: 0 0 12px var(--neon-blue);
+      min-height: 3.2rem;
+    }
+    .profile-section .typing {
+      border-right: 2px solid var(--neon-pink);
+      white-space: nowrap;
+      overflow: hidden;
+      display: inline-block;
+      animation: blink 0.7s steps(1) infinite;
+    }
+    @keyframes blink {
+      0%, 100% { border-color: var(--neon-pink); }
+      50% { border-color: transparent; }
+    }
+    .profile-section .subtitle {
+      color: var(--neon-pink);
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 0 8px var(--neon-pink);
+    }
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .tab-btn {
+      background: transparent;
+      color: var(--neon-blue);
+      border: 2px solid var(--neon-blue);
+      border-radius: 10px 10px 0 0;
+      font-size: 1.1rem;
+      font-family: 'Orbitron', Arial, sans-serif;
+      padding: 0.7rem 2.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--neon-blue);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+      outline: none;
+      position: relative;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--neon-blue);
+      color: #050510;
+      box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-blue);
+      border: 2px solid var(--neon-pink);
+      z-index: 3;
+    }
+    .tab-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2.2rem 2.5rem 2.5rem 2.5rem;
+      min-height: 320px;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: scale(0.98) translateY(30px);
+      pointer-events: none;
+      transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+      display: none;
+    }
+    .tab-content.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+      display: block;
+    }
+    h2 {
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px var(--neon-blue);
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    /* Skill bars */
+    .skill-label {
+      font-size: 1rem;
+      margin-bottom: 0.2em;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    .skill-bar {
+      background: #222b;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.1em;
+      box-shadow: 0 0 8px var(--neon-blue);
+    }
+    .skill-bar-inner {
+      height: 18px;
+      width: 0;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+      box-shadow: 0 0 10px var(--neon-blue);
+      border-radius: 8px;
+      transition: width 1.2s var(--transition);
+    }
+    /* Expandable cards */
+    .exp-card, .edu-card {
+      background: rgba(20, 20, 30, 0.85);
+      border-radius: 14px;
+      box-shadow: 0 0 12px var(--neon-blue);
+      margin-bottom: 1.2rem;
+      padding: 1.1rem 1.5rem 1.1rem 1.5rem;
+      cursor: pointer;
+      border: 1.5px solid var(--neon-pink);
+      transition: box-shadow 0.3s, border 0.3s;
+      position: relative;
+    }
+    .exp-card:hover, .edu-card:hover {
+      box-shadow: 0 0 24px var(--neon-pink), 0 0 18px var(--neon-blue);
+      border: 1.5px solid var(--neon-blue);
+    }
+    .exp-title, .edu-title {
+      font-size: 1.15rem;
+      color: var(--neon-blue);
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .exp-arrow, .edu-arrow {
+      font-size: 1.2rem;
+      color: var(--neon-pink);
+      transition: transform 0.3s;
+    }
+    .exp-card.open .exp-arrow, .edu-card.open .edu-arrow {
+      transform: rotate(90deg);
+    }
+    .exp-details, .edu-details {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s var(--transition), opacity 0.5s var(--transition);
+      margin-top: 0.2rem;
+    }
+    .exp-card.open .exp-details, .edu-card.open .edu-details {
+      max-height: 300px;
+      opacity: 1;
+    }
+    /* Floating contact button */
+    .contact-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 30;
+      background: var(--neon-blue);
+      color: #050510;
+      border: 2px solid var(--neon-pink);
+      border-radius: 50%;
+      width: 64px; height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 0 20px var(--neon-blue), 0 0 10px var(--neon-pink);
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .contact-fab:hover {
+      background: var(--neon-pink);
+      color: #fff;
+      box-shadow: 0 0 30px var(--neon-pink), 0 0 20px var(--neon-blue);
+    }
+    /* Contact modal */
+    .contact-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10, 10, 20, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .contact-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .contact-modal-content {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--neon-blue);
+      padding: 2.2rem 2.5rem;
+      min-width: 320px;
+      max-width: 90vw;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+    .contact-modal-content h2 {
+      color: var(--neon-pink);
+      margin-bottom: 1.2rem;
+    }
+    .close-modal {
+      position: absolute;
+      top: 12px; right: 18px;
+      background: transparent;
+      border: none;
+      color: var(--neon-blue);
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .close-modal:hover {
+      color: var(--neon-pink);
+    }
+    @media (max-width: 700px) {
+      .tab-content { padding: 1.2rem 0.7rem; }
+      .profile-section { padding: 1.2rem 0.7rem; }
+      .tab-nav { gap: 0.7rem; }
+      .contact-modal-content { padding: 1.2rem 0.7rem; }
+    }
+  </style>
+  <script>
+    // Typing effect for h1
+    document.addEventListener('DOMContentLoaded', function() {
+      const h1 = document.getElementById('main-title');
+      const text = h1.getAttribute('data-text');
+      let i = 0;
+      function type() {
+        h1.innerHTML = '<span class="typing">' + text.slice(0, i) + '</span>';
+        if (i < text.length) {
+          i++;
+          setTimeout(type, 80);
+        }
+      }
+      type();
+    });
+    // Tab navigation logic
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+      const video = document.getElementById('bg-video');
+      function activateTab(idx) {
+        tabs.forEach((t, i) => {
+          t.classList.toggle('active', i === idx);
+          contents[i].classList.toggle('active', i === idx);
+        });
+        // Try to play the video every time a tab is activated
+        if (video) {
+          video.play().catch(() => {});
+        }
+      }
+      tabs.forEach((tab, idx) => {
+        tab.addEventListener('click', () => activateTab(idx));
+      });
+      activateTab(0); // Default to first tab
+      // Animate skill bars on Skills tab
+      tabs[1].addEventListener('click', function() {
+        setTimeout(() => {
+          document.querySelectorAll('.skill-bar-inner').forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            bar.style.width = width;
+          });
+        }, 300);
+      });
+    });
+    // Expandable cards
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.exp-card').forEach(card => {
+        card.addEventListener('click', function() {
+          this.classList.toggle('open');
+        });
+      });
+      document.querySelectorAll('.edu-card').forEach(card => {
+        card.addEventListener('click', function() {
+          this.classList.toggle('open');
+        });
+      });
+    });
+    // Floating contact button and modal
+    function openContactModal() {
+      document.getElementById('contact-modal').classList.add('open');
+    }
+    function closeContactModal() {
+      document.getElementById('contact-modal').classList.remove('open');
+    }
+    // Animate skill bars on load if Skills is first tab
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        document.querySelectorAll('.skill-bar-inner').forEach(bar => {
+          const width = bar.getAttribute('data-width');
+          bar.style.width = width;
+        });
+      }, 1200);
+    });
+  </script>
+</head>
+<body>
+
+  <video muted loop playsinline autoplay id="bg-video">
+    <source src="Neon_Binary_Code_Video_Creation.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="profile-section glass">
+    <div class="profile-pic">
+      <img src="profile.png" alt="Michael Zuazo Profile Photo">
+    </div>
+    <h1 id="main-title" data-text="Michael Zuazo"></h1>
+    <div class="subtitle">Information Technology Student | AI Developer | Tech Support Specialist</div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active">About</button>
+    <button class="tab-btn">Skills</button>
+    <button class="tab-btn">Experience</button>
+    <button class="tab-btn">Education</button>
+  </div>
+
+  <div class="tab-content glass" id="about-tab">
+    <h2>About Me</h2>
+    <p>To leverage my IT and AI development experience to contribute meaningful automation and support solutions in a forward-thinking organization, while continuing to learn and grow professionally.</p>
+    <p style="margin-top:1.5em;">Bilingual: English & Spanish<br>Location: Tallahassee, FL</p>
+  </div>
+
+  <div class="tab-content glass" id="skills-tab">
+    <h2>Skills</h2>
+    <div class="skill-label">Programming: Python, C++, Java, SQL/Oracle</div>
+    <div class="skill-bar"><div class="skill-bar-inner" data-width="95%"></div></div>
+    <div class="skill-label">Tools: Docker, Git, n8n, Airtable, Lovable</div>
+    <div class="skill-bar"><div class="skill-bar-inner" data-width="85%"></div></div>
+    <div class="skill-label">Certifications: CompTIA A+, Network+ (in progress), Security+ (program completed)</div>
+    <div class="skill-bar"><div class="skill-bar-inner" data-width="80%"></div></div>
+    <div class="skill-label">Hardware/Software Installation and Troubleshooting</div>
+    <div class="skill-bar"><div class="skill-bar-inner" data-width="92%"></div></div>
+  </div>
+
+  <div class="tab-content glass" id="experience-tab">
+    <h2>Experience</h2>
+    <div class="exp-card">
+      <div class="exp-title">Help Desk Technician – Florida State University (Jan 2024 - Present) <span class="exp-arrow">▶</span></div>
+      <div class="exp-details">
+        <ul>
+          <li>Assisted professors with connectivity, hardware, and software troubleshooting</li>
+          <li>Maintained and updated systems for faculty use</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-title">Head Technician/Assistant Manager – Batteries Plus (Sep 2021 - Dec 2023) <span class="exp-arrow">▶</span></div>
+      <div class="exp-details">
+        <ul>
+          <li>Managed mobile device repairs and battery diagnostics</li>
+          <li>Handled customer reception and service operations</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-title">Intern Technician – Memorial Hospital System (May 2024 - Aug 2024) <span class="exp-arrow">▶</span></div>
+      <div class="exp-details">
+        <ul>
+          <li>Developed backend tools using Java and Python for risk analysis</li>
+          <li>Provided on-site support to Joe DiMaggio offices</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content glass" id="education-tab">
+    <h2>Education</h2>
+    <div class="edu-card">
+      <div class="edu-title">BA in Information Technology – FSU/TCC (Aug 2021 - Present) <span class="edu-arrow">▶</span></div>
+      <div class="edu-details">
+        <p>Florida State University / Tallahassee Community College<br>Major: Information Technology</p>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Technical College Degree in Network Support Services – McFatter Technical College (2019 - 2021) <span class="edu-arrow">▶</span></div>
+      <div class="edu-details">
+        <p>McFatter Technical College<br>Network Support Services</p>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-title">Magnet High School Diploma – McFatter Technical High School (2017 - 2021) <span class="edu-arrow">▶</span></div>
+      <div class="edu-details">
+        <p>McFatter Technical High School<br>Magnet Program</p>
+      </div>
+    </div>
+  </div>
+
+  <button class="contact-fab" onclick="openContactModal()" title="Contact"><span>✉️</span></button>
+
+  <div class="contact-modal" id="contact-modal">
+    <div class="contact-modal-content">
+      <button class="close-modal" onclick="closeContactModal()">&times;</button>
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:michaelczuazo@gmail.com">michaelczuazo@gmail.com</a></p>
+      <p>Phone: <a href="tel:9542248558">954-224-8558</a></p>
+      <p>Location: 235 S Ocala Rd, Tallahassee, FL 32304</p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/michael-zuazo-3078261a1" target="_blank">michael-zuazo-3078261a1</a></p>
+    </div>
+  </div>
+
+</body>
+</html> 

@@ -415,9 +415,9 @@
       tabs.forEach((tab, idx) => {
         tab.addEventListener('click', () => activateTab(idx));
       });
-      activateTab(0); // Default to first tab
+      activateTab(0); // Default to first tab (Skills)
       // Animate skill bars on Skills tab
-      tabs[1].addEventListener('click', function() {
+      tabs[0].addEventListener('click', function() {
         setTimeout(() => {
           document.querySelectorAll('.skill-bar-inner').forEach(bar => {
             const width = bar.getAttribute('data-width');
@@ -491,19 +491,12 @@
   </div>
 
   <div class="tab-nav">
-    <button class="tab-btn active">About</button>
-    <button class="tab-btn">Skills</button>
+    <button class="tab-btn active">Skills</button>
     <button class="tab-btn">Experience</button>
     <button class="tab-btn">Education</button>
     <button class="tab-btn">Extra Curriculars</button>
     <button class="tab-btn">Personal Projects</button>
     <button class="tab-btn">Practical Applications</button>
-  </div>
-
-  <div class="tab-content glass" id="about-tab">
-    <h2>About Me</h2>
-    <p>To leverage my IT and AI development experience to contribute meaningful automation and support solutions in a forward-thinking organization, while continuing to learn and grow professionally.</p>
-    <p style="margin-top:1.5em;">Bilingual: English & Spanish<br>Location: Tallahassee, FL</p>
   </div>
 
   <div class="tab-content glass" id="skills-tab">

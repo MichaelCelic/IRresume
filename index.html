@@ -455,6 +455,20 @@
         });
       }, 1200);
     });
+    // Background music: attempt autoplay on load, fallback on first user interaction
+    document.addEventListener('DOMContentLoaded', function() {
+      const bgMusic = document.getElementById('bg-music');
+      if (!bgMusic) return;
+      bgMusic.volume = 0.3;
+      bgMusic.play().catch(function() {});
+      function startMusic() {
+        bgMusic.play().catch(function() {});
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('keydown', startMusic);
+      }
+      document.addEventListener('click', startMusic, { once: true });
+      document.addEventListener('keydown', startMusic, { once: true });
+    });
   </script>
 </head>
 <body>
@@ -463,6 +477,10 @@
     <source src="Neon_Binary_Code_Video_Creation.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+
+  <audio id="bg-music" loop autoplay preload="auto">
+    <source src="Scandroid%20-%20Neo-Tokyo%20-%20scandroidVEVO.mp3" type="audio/mpeg">
+  </audio>
 
   <div class="profile-section glass">
     <div class="profile-pic">

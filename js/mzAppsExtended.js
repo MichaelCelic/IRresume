@@ -265,6 +265,7 @@
       "<dt>Operating System:</dt><dd>Michael Zuazo OS</dd>" +
       "<dt>Location:</dt><dd>Tallahassee, FL</dd>" +
       "<dt>Role:</dt><dd>AI Researcher | IT Student | Help Desk Technician</dd>" +
+      "<dt>Resume:</dt><dd><a href=\"./Assets/Michael_Zuazo_IT_Resume_2026.pdf\" download=\"Michael_Zuazo_IT_Resume_2026.pdf\">Download Michael Zuazo IT Resume 2026 (PDF)</a></dd>" +
       "</div></div></div>",
     skills:
       "<p style=\"margin:0 0 8px;font-weight:700\">Installed programs (skills)</p><ul class=\"sys-list\">" +

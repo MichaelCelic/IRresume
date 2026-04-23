@@ -974,6 +974,15 @@
   margin: 0;
 }
 
+.sys-panel a {
+  color: #003c74;
+  text-decoration: underline;
+}
+
+.sys-panel a:hover {
+  color: #0066cc;
+}
+
 .sys-list {
   list-style: none;
   margin: 0;

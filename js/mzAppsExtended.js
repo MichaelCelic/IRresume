@@ -242,8 +242,8 @@
     '<div class="oe-tree-title" style="margin-top:10px">Contacts</div><ul>' +
     "<li>📧 michaelczuazo@gmail.com</li>" +
     "<li>📞 (954)-224-8558</li>" +
-    "<li>🔗 github.com/MichaelCelic</li>" +
-    "<li>🔗 www.linkedin.com/in/michael-zuazo</li>" +
+    "<li>🔗 <a href=\"https://github.com/MichaelCelic\" target=\"_blank\" rel=\"noopener noreferrer\">github.com/MichaelCelic</a></li>" +
+    "<li>🔗 <a href=\"https://www.linkedin.com/in/michael-zuazo\" target=\"_blank\" rel=\"noopener noreferrer\">www.linkedin.com/in/michael-zuazo</a></li>" +
     "<li>📍 Tallahassee, FL</li>" +
     "</ul></div>" +
     '<form id="oe-form" class="oe-compose">' +

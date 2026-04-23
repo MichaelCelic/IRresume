@@ -856,6 +856,15 @@
   cursor: default;
 }
 
+.oe-tree a {
+  color: #0645ad;
+  text-decoration: underline;
+}
+
+.oe-tree a:hover {
+  color: #0b4fba;
+}
+
 .oe-compose {
   flex: 1;
   display: flex;

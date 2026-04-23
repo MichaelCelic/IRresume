@@ -1,0 +1,97 @@
+.taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #3d89f0 0%, #2e69d8 45%, #2457c8 65%, #1c43ab 100%);
+  border-top: 1px solid #89b8ff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+
+.start-button {
+  margin: 0 6px 0 4px;
+  min-width: 96px;
+  height: 36px;
+  border-radius: 0 16px 16px 0;
+  border: 1px solid #2b6f15;
+  border-left: 0;
+  background: linear-gradient(180deg, #7fde53 0%, #4eaf28 52%, #3a8f1b 100%);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), inset 0 -2px 0 rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+
+.start-button:hover {
+  filter: brightness(1.06);
+}
+
+.start-button:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+.taskbar-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  overflow-x: auto;
+  padding-right: 6px;
+}
+
+.taskbar-tab {
+  height: 30px;
+  min-width: 170px;
+  border: 1px solid #17418f;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #5e99ea 0%, #3c78ce 100%);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0 10px;
+  text-align: left;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+}
+
+.taskbar-tab.active {
+  background: linear-gradient(180deg, #cfe6ff 0%, #93bbe9 60%, #6d9fd8 100%);
+  color: #0d2d5a;
+  border-color: #315f9d;
+  text-shadow: none;
+}
+
+.taskbar-tab:hover:not(.active) {
+  filter: brightness(1.08);
+}
+
+.system-tray {
+  min-width: 152px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 0 10px 0 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.45);
+  background: linear-gradient(180deg, #6aa0e5 0%, #4f84ce 55%, #3d70bb 100%);
+  font-size: 0.78rem;
+  color: #f6fbff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.tray-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}

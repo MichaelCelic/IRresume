@@ -1,0 +1,164 @@
+:root {
+  --aero-blue: #4da6ff;
+  --aero-glass: rgba(255, 255, 255, 0.25);
+  --aero-glow: 0 0 20px rgba(100, 200, 255, 0.6);
+  --chrome-gradient: linear-gradient(180deg, #e8e8e8 0%, #c0c0c0 100%);
+  --xp-taskbar: linear-gradient(180deg, #245edb 0%, #3a7bd5 40%, #1e4fc2 100%);
+  --xp-title: linear-gradient(90deg, #1956c4 0%, #3a86ff 100%);
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: #d3e9ff;
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+}
+
+.boot-content {
+  width: min(520px, 90vw);
+  text-align: center;
+}
+
+.boot-content h1 {
+  margin: 0 0 14px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-shadow: 0 0 10px #4da6ff;
+}
+
+.boot-bar {
+  height: 24px;
+  border: 1px solid #8db8ff;
+  background: #101c30;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.boot-progress {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #58a2ff, #8fd2ff, #58a2ff);
+  animation: bootProgress 2s ease forwards;
+}
+
+@keyframes bootProgress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.desktop {
+  position: fixed;
+  inset: 0;
+  color: #fff;
+}
+
+.window-layer {
+  position: absolute;
+  inset: 0;
+  padding-bottom: 48px;
+}
+
+.app-window {
+  position: absolute;
+  width: 620px;
+  height: 460px;
+  min-width: 320px;
+  min-height: 220px;
+  border-radius: 9px 9px 6px 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid #15407f;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.app-window.maximized {
+  inset: 0 0 48px 0 !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0;
+}
+
+.window-titlebar {
+  position: relative;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  background: var(--xp-title);
+  color: #fff;
+  padding: 0 8px;
+  cursor: move;
+}
+
+.window-titlebar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.window-controls {
+  display: flex;
+  gap: 6px;
+  margin-right: 10px;
+}
+
+.window-controls button {
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.btn-close { background: #ff5a5a; }
+.btn-min { background: #ffd85a; }
+.btn-max { background: #4fe36f; }
+
+.window-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.window-body {
+  height: calc(100% - 32px);
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, transparent 40%, rgba(0, 0, 0, 0.22) 40%, rgba(0, 0, 0, 0.22) 50%, transparent 50%);
+}

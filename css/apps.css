@@ -1,0 +1,995 @@
+/* --- Shared: app windows that fill the chrome body --- */
+.window-body--fill {
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.window-body--fill > .aim-shell,
+.window-body--fill > .ms-root,
+.window-body--fill > .wa-root,
+.window-body--fill > .forum-root,
+.window-body--fill > .xb-root,
+.window-body--fill > .oe-root,
+.window-body--fill > .sys-root {
+  height: 100%;
+  min-height: 0;
+}
+
+/* ===================== AIM (classic buddy list + IM) ===================== */
+.aim-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font: 11px Tahoma, "MS Sans Serif", Arial, sans-serif;
+  background: #ece9d8;
+  color: #000;
+}
+
+.aim-menubar {
+  display: flex;
+  gap: 10px;
+  padding: 3px 6px 4px;
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 55%, #dcd8cf 100%);
+  border-bottom: 1px solid #aca899;
+  flex-shrink: 0;
+}
+
+.aim-menubar span {
+  color: #000;
+}
+
+.aim-main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  border-top: 1px solid #fff;
+}
+
+.aim-buddies {
+  width: 232px;
+  flex-shrink: 0;
+  background: linear-gradient(90deg, #d6e5fa 0%, #c9daf5 40%, #b8cce8 100%);
+  border-right: 1px solid #7a96b8;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.aim-userbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 6px;
+  background: linear-gradient(180deg, #eef4fc 0%, #d3e2f4 100%);
+  border-bottom: 1px solid #8aa7c4;
+}
+
+.aim-userbar img {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #6b8db3;
+  object-fit: cover;
+}
+
+.aim-user-meta {
+  line-height: 1.25;
+}
+
+.aim-sn {
+  font-weight: 700;
+  color: #0b2c5a;
+}
+
+.aim-status {
+  font-size: 10px;
+  color: #444;
+}
+
+.aim-buddy-scroll {
+  flex: 1;
+  overflow: auto;
+  padding: 4px 2px 6px;
+}
+
+.aim-group {
+  margin-bottom: 2px;
+}
+
+.aim-group-hd {
+  padding: 3px 6px;
+  font-weight: 700;
+  font-size: 10px;
+  color: #1a3a6e;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 2px;
+}
+
+.aim-group-hd:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.aim-group-hd.collapsed + .aim-group-body {
+  display: none;
+}
+
+.aim-group-body {
+  padding: 0 2px 4px 10px;
+}
+
+.aim-buddy {
+  padding: 4px 6px;
+  margin: 1px 0;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 11px;
+  border: 1px solid transparent;
+}
+
+.aim-buddy:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.aim-buddy.active {
+  background: #316ac5;
+  color: #fff;
+  border-color: #245edc;
+}
+
+.aim-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #ece9d8;
+}
+
+.aim-chat-titlebar {
+  padding: 5px 8px;
+  background: linear-gradient(180deg, #fff 0%, #d8e5f7 45%, #b8cce8 100%);
+  border-bottom: 1px solid #7a96b8;
+  font-weight: 700;
+  color: #0b2c5a;
+  flex-shrink: 0;
+}
+
+.aim-chat-log {
+  flex: 1;
+  overflow: auto;
+  background: #fff;
+  margin: 6px;
+  border: 1px solid #7a96b8;
+  padding: 8px 10px;
+  font: 12px Arial, Helvetica, sans-serif;
+  box-shadow: inset 0 1px 0 #fff;
+}
+
+.aim-msg {
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+
+.aim-ts {
+  color: #666;
+  font-size: 10px;
+}
+
+.aim-name-buddy {
+  color: #800000;
+  font-weight: 700;
+}
+
+.aim-name-me {
+  color: #000080;
+  font-weight: 700;
+}
+
+.aim-running {
+  display: inline-block;
+  width: 14px;
+  text-align: center;
+  margin-right: 2px;
+}
+
+/* ===================== MySpace (~2006) ===================== */
+.ms-root {
+  overflow: auto;
+  background: #000 url("../Assets/myspace_background.jfif") center top / cover no-repeat fixed;
+  color: #fff;
+  font: 11px Verdana, Arial, sans-serif;
+}
+
+.ms-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 12px 10px 24px;
+}
+
+.ms-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 8px;
+}
+
+.ms-table td {
+  vertical-align: top;
+}
+
+.ms-col-left {
+  width: 200px;
+}
+
+.ms-col-mid {
+  min-width: 0;
+}
+
+.ms-col-right {
+  width: 300px;
+}
+
+.ms-panel {
+  background: rgba(0, 0, 0, 0.55);
+  border: 2px solid #ff69b4;
+  box-shadow: 0 0 12px rgba(255, 0, 180, 0.35);
+  padding: 10px;
+}
+
+.ms-profile-pic {
+  text-align: center;
+}
+
+.ms-profile-pic img {
+  width: 170px;
+  max-width: 100%;
+  border: 3px solid #fff;
+  outline: 2px solid #ff1493;
+}
+
+.ms-contact {
+  margin-top: 10px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.ms-contact strong {
+  color: #ff9edf;
+}
+
+.ms-headline {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px;
+  animation: msGlitter 2.5s ease-in-out infinite;
+}
+
+@keyframes msGlitter {
+  0%,
+  100% {
+    text-shadow: 0 0 6px #fff, 0 0 12px #ff69b4, 2px 0 #ff1493;
+    color: #fff;
+  }
+  50% {
+    text-shadow: 0 0 10px #0ff, 0 0 18px #ff69b4, -2px 0 #ff1493;
+    color: #ffe4ff;
+  }
+}
+
+.ms-marquee-wrap {
+  margin: 6px 0 12px;
+  overflow: hidden;
+  border: 1px solid #ff69b4;
+  background: rgba(40, 0, 40, 0.6);
+}
+
+.ms-marquee {
+  white-space: nowrap;
+  animation: msMarquee 18s linear infinite;
+  padding: 4px 0;
+  font-size: 10px;
+  color: #ffb7f4;
+}
+
+@keyframes msMarquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.ms-section-title {
+  background: linear-gradient(90deg, #ff1493, #9400d3);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  margin: 12px 0 6px;
+  border: 1px solid #000;
+}
+
+.ms-about {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #eee;
+}
+
+.ms-top8-title {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 8px #ff69b4;
+  margin-bottom: 8px;
+}
+
+.ms-top8-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.ms-friend {
+  text-align: center;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.ms-friend:hover {
+  border-color: #ff69b4;
+  background: rgba(255, 105, 180, 0.15);
+}
+
+.ms-friend.active {
+  border-color: #0ff;
+  background: rgba(0, 255, 255, 0.12);
+}
+
+.ms-friend-avatar {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 4px;
+  border: 2px solid #fff;
+  background: linear-gradient(135deg, #2a0035, #6b006b);
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+}
+
+.ms-friend-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ms-friend-name {
+  font-size: 9px;
+  line-height: 1.2;
+  color: #fff;
+  word-break: break-word;
+}
+
+.ms-comments {
+  margin-top: 12px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.ms-comment {
+  border-bottom: 1px dashed rgba(255, 105, 180, 0.4);
+  padding: 6px 0;
+}
+
+.ms-comment b {
+  color: #ff9edf;
+}
+
+.ms-detail {
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(20, 0, 30, 0.75);
+  border: 1px solid #ff69b4;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #f5f5f5;
+  min-height: 80px;
+}
+
+.ms-detail ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.ms-now-playing {
+  margin-top: 10px;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid #888;
+  font-size: 10px;
+}
+
+.ms-now-playing span {
+  color: #7cfc00;
+}
+
+.app-window[data-app="aim"] {
+  min-width: 560px;
+  min-height: 400px;
+}
+
+.app-window[data-app="myspace"] {
+  min-width: 640px;
+  min-height: 460px;
+}
+
+.app-window[data-app="winamp"] {
+  min-width: 520px;
+  min-height: 400px;
+}
+
+.app-window[data-app="forum"] {
+  min-width: 560px;
+  min-height: 420px;
+}
+
+.app-window[data-app="xbox"] {
+  min-width: 580px;
+  min-height: 440px;
+}
+
+.app-window[data-app="outlook"] {
+  min-width: 560px;
+  min-height: 400px;
+}
+
+.app-window[data-app="mycomputer"] {
+  min-width: 480px;
+  min-height: 380px;
+}
+
+/* ===================== Winamp 2.x (Education) ===================== */
+.wa-root {
+  display: flex;
+  flex-direction: column;
+  background: #282828;
+  color: #c0ffc0;
+  font: 11px Arial, Helvetica, sans-serif;
+  border: 1px solid #000;
+}
+
+.wa-titlebar {
+  background: linear-gradient(180deg, #3a3a3a 0%, #1a1a1a 100%);
+  color: #c0ffc0;
+  padding: 3px 6px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #000;
+  flex-shrink: 0;
+}
+
+.wa-body {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  flex: 1;
+  min-height: 0;
+}
+
+.wa-plist {
+  background: #000;
+  border-right: 1px solid #333;
+  overflow: auto;
+  padding: 4px 0;
+}
+
+.wa-track {
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #00ff00;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  border-left: 3px solid transparent;
+}
+
+.wa-track:hover {
+  background: #111;
+}
+
+.wa-track.active {
+  background: #1a331a;
+  border-left-color: #0f0;
+}
+
+.wa-side {
+  display: flex;
+  flex-direction: column;
+  background: #111;
+  min-width: 0;
+}
+
+.wa-led {
+  margin: 8px;
+  padding: 8px;
+  background: #000;
+  border: 1px solid #333;
+  color: #0f0;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.35;
+  min-height: 120px;
+  overflow: auto;
+}
+
+.wa-vu {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  height: 48px;
+  margin: 0 8px 8px;
+}
+
+.wa-vu span {
+  width: 4px;
+  background: #0f0;
+  animation: waVu 0.45s ease-in-out infinite alternate;
+}
+
+.wa-vu span:nth-child(2) { animation-delay: 0.05s; }
+.wa-vu span:nth-child(3) { animation-delay: 0.1s; }
+.wa-vu span:nth-child(4) { animation-delay: 0.15s; }
+.wa-vu span:nth-child(5) { animation-delay: 0.08s; }
+.wa-vu span:nth-child(6) { animation-delay: 0.12s; }
+.wa-vu span:nth-child(7) { animation-delay: 0.02s; }
+.wa-vu span:nth-child(8) { animation-delay: 0.18s; }
+
+@keyframes waVu {
+  from { height: 4px; opacity: 0.5; }
+  to { height: 36px; opacity: 1; }
+}
+
+.wa-controls {
+  display: flex;
+  gap: 6px;
+  padding: 6px 8px;
+  background: #222;
+  border-top: 1px solid #444;
+  flex-shrink: 0;
+}
+
+.wa-controls button {
+  width: 28px;
+  height: 22px;
+  font-size: 10px;
+  background: linear-gradient(180deg, #555, #333);
+  border: 1px solid #000;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.wa-eq {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 40px;
+  padding: 6px 8px;
+  background: #1a1a1a;
+  border-top: 1px solid #000;
+}
+
+.wa-eq i {
+  width: 5px;
+  background: #393;
+  border-radius: 1px;
+  animation: waEq 0.6s ease-in-out infinite alternate;
+}
+
+.wa-eq i:nth-child(odd) { animation-duration: 0.45s; }
+
+@keyframes waEq {
+  from { height: 6px; }
+  to { height: 28px; }
+}
+
+/* ===================== Forum2000 / MSN-style (Extra Curriculars) ===================== */
+.forum-root {
+  display: flex;
+  flex-direction: column;
+  background: #d4e3f7;
+  color: #000;
+  font: 12px Tahoma, "MS Sans Serif", Arial, sans-serif;
+}
+
+.forum-top {
+  background: linear-gradient(180deg, #1e5aa8 0%, #2b6cb0 100%);
+  color: #fff;
+  padding: 8px 10px;
+  font-weight: 700;
+  border-bottom: 2px solid #103060;
+  flex-shrink: 0;
+}
+
+.forum-sub {
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.95;
+  margin-top: 2px;
+}
+
+.forum-toolbar {
+  background: linear-gradient(180deg, #ece9d8 0%, #d8d4ca 100%);
+  border-bottom: 1px solid #aca899;
+  padding: 4px 8px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.forum-main {
+  flex: 1;
+  overflow: auto;
+  padding: 8px;
+}
+
+.forum-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #7a96b8;
+}
+
+.forum-table th {
+  background: linear-gradient(180deg, #eef4fc 0%, #c9daf5 100%);
+  border: 1px solid #7a96b8;
+  padding: 4px 6px;
+  font-size: 11px;
+  text-align: left;
+}
+
+.forum-table td {
+  border: 1px solid #c6d8ef;
+  padding: 6px 8px;
+  font-size: 11px;
+  vertical-align: top;
+}
+
+.forum-table tr:nth-child(even) td {
+  background: #f0f6ff;
+}
+
+.forum-thread-row {
+  cursor: pointer;
+}
+
+.forum-thread-row:hover td {
+  background: #fffacd !important;
+}
+
+.forum-thread-row.active td {
+  background: #b8d6ff !important;
+}
+
+.forum-view {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #7a96b8;
+  min-height: 120px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.forum-view h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #0b2c5a;
+}
+
+.forum-view ul,
+.forum-view ol {
+  margin: 6px 0;
+  padding-left: 20px;
+}
+
+/* ===================== Original Xbox / blade (NeuroForge) ===================== */
+.xb-root {
+  height: 100%;
+  overflow: auto;
+  background: #0a0a0a url("../Assets/xbox%20background.jpg") center / cover no-repeat;
+  color: #e8ffe8;
+  font: 12px Verdana, Tahoma, sans-serif;
+}
+
+.xb-overlay {
+  min-height: 100%;
+  background: linear-gradient(180deg, rgba(0, 40, 0, 0.75) 0%, rgba(0, 0, 0, 0.88) 100%);
+  padding: 14px 16px 20px;
+}
+
+.xb-logo-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.xb-green {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #dfff9f, #6ecf00 40%, #2d5a00);
+  box-shadow: 0 0 12px #6ecf00;
+}
+
+.xb-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(110, 207, 0, 0.8);
+}
+
+.xb-blade {
+  background: rgba(0, 30, 0, 0.55);
+  border: 1px solid rgba(110, 207, 0, 0.45);
+  border-left: 4px solid #6ecf00;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.xb-blade h3 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: #9fff66;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.xb-blade p {
+  margin: 0 0 8px;
+  line-height: 1.45;
+  color: #dfeedd;
+}
+
+.xb-blade p:last-child {
+  margin-bottom: 0;
+}
+
+.xb-blade ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  color: #dfeedd;
+}
+
+.xb-specs {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 4px 10px;
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.xb-specs dt {
+  color: #9fff66;
+  font-weight: 700;
+}
+
+.xb-specs dd {
+  margin: 0;
+  color: #ccc;
+}
+
+.xb-quote {
+  font-style: italic;
+  color: #b8ffb8;
+  margin-top: 10px;
+  font-size: 11px;
+}
+
+/* ===================== Outlook Express (Contact) ===================== */
+.oe-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ece9d8;
+  color: #000;
+  font: 11px Tahoma, "MS Sans Serif", Arial, sans-serif;
+}
+
+.oe-menubar {
+  padding: 2px 6px 3px;
+  border-bottom: 1px solid #aca899;
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+  flex-shrink: 0;
+}
+
+.oe-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px 6px;
+  border-bottom: 1px solid #aca899;
+  background: linear-gradient(180deg, #f5f4f0 0%, #dcd8cf 100%);
+  flex-shrink: 0;
+}
+
+.oe-toolbar button {
+  padding: 2px 8px;
+  font-size: 11px;
+  border: 1px solid #7a7a7a;
+  background: linear-gradient(180deg, #fff 0%, #ddd 100%);
+  cursor: pointer;
+}
+
+.oe-main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.oe-tree {
+  width: 160px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid #aca899;
+  overflow: auto;
+  padding: 6px;
+}
+
+.oe-tree-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+
+.oe-tree ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 4px;
+  font-size: 10px;
+}
+
+.oe-tree li {
+  padding: 2px 0;
+  cursor: default;
+}
+
+.oe-compose {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 8px;
+  gap: 6px;
+  overflow: auto;
+}
+
+.oe-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.oe-row input,
+.oe-row textarea {
+  font: 11px Tahoma, Arial, sans-serif;
+  border: 1px solid #7a9ebd;
+  padding: 3px 5px;
+}
+
+.oe-body {
+  flex: 1;
+  min-height: 140px;
+  resize: vertical;
+}
+
+.oe-hint {
+  font-size: 10px;
+  color: #444;
+}
+
+/* ===================== System Properties (About Me / My Computer) ===================== */
+.sys-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ece9d8;
+  color: #000;
+  font: 11px Tahoma, "MS Sans Serif", Arial, sans-serif;
+}
+
+.sys-tabs {
+  display: flex;
+  gap: 0;
+  padding: 6px 8px 0;
+  background: linear-gradient(180deg, #7eb4ea 0%, #3d7dcd 100%);
+  border-bottom: 1px solid #245edb;
+  flex-shrink: 0;
+}
+
+.sys-tab {
+  padding: 4px 14px 5px;
+  margin-right: 2px;
+  border: 1px solid #245edb;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, #d8e8fc 0%, #a8c8f0 100%);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.sys-tab.active {
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+  position: relative;
+  top: 1px;
+  font-weight: 700;
+}
+
+.sys-panel {
+  flex: 1;
+  overflow: auto;
+  padding: 12px 14px;
+  border-top: 1px solid #fff;
+}
+
+.sys-general {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.sys-general img {
+  width: 56px;
+  height: 56px;
+  border: 1px solid #aca899;
+  object-fit: cover;
+}
+
+.sys-dl {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 6px 10px;
+  font-size: 11px;
+}
+
+.sys-dl dt {
+  font-weight: 700;
+  color: #333;
+}
+
+.sys-dl dd {
+  margin: 0;
+}
+
+.sys-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sys-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-bottom: 1px solid #d0d0d0;
+  font-size: 11px;
+}
+
+.sys-list li:nth-child(odd) {
+  background: #f5f5f5;
+}
+
+.sys-ver {
+  color: #666;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+}
+
+.sys-cert-ok {
+  color: #080;
+  font-weight: 700;
+}
